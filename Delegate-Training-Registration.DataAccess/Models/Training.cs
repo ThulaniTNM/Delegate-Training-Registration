@@ -4,7 +4,7 @@ namespace Delegate_Training_Registration.DataAccess.Models
 {
     public class Training
     {
-        public int TrainingID { get; set; }
+        public Guid TrainingID { get; set; }
         public string TrainingName { get; set; }
         public string TrainingVenue { get; set; }
         public string TrainingCost { get; set; }
