@@ -7,7 +7,9 @@ namespace Delegate_Training_Registration.DataAccess.Models
         public Guid TrainingID { get; set; }
         public string TrainingName { get; set; }
         public string TrainingVenue { get; set; }
-        public string TrainingCost { get; set; }
+
+        [Column(TypeName = "decimal(18,4)")]
+        public decimal TrainingCost { get; set; }
         public DateTime TrainingDate { get; set; }
         public DateTime TrainingRegistrationClosingDate { get; set; }
         public int AvailableSeats { get; set; }

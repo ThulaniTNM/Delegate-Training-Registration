@@ -4,6 +4,7 @@ using Delegate_Training_Registration.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Delegate_Training_Registration.DataAccess.Migrations
 {
     [DbContext(typeof(DelegateTrainingRegistrationContext))]
-    partial class DelegateTrainingRegistrationContextModelSnapshot : ModelSnapshot
+    [Migration("20230524132823_change_trainingCost_datatype")]
+    partial class change_trainingCost_datatype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,20 +43,6 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                     b.HasKey("CourseCode");
 
                     b.ToTable("Courses");
-
-                    b.HasData(
-                        new
-                        {
-                            CourseCode = new Guid("e288a507-bb38-477e-b985-c7afd1ee8057"),
-                            CourseDescription = "Software & hardware",
-                            CourseName = "Computer science"
-                        },
-                        new
-                        {
-                            CourseCode = new Guid("7aaa6300-d539-45de-b0a1-2f4d5750f75b"),
-                            CourseDescription = "Numbers & operators",
-                            CourseName = "Mathematics"
-                        });
                 });
 
             modelBuilder.Entity("Delegate_Training_Registration.DataAccess.Models.Person", b =>
@@ -84,26 +73,6 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                     b.HasKey("PersonID");
 
                     b.ToTable("People");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonID = new Guid("8ce12c33-3a41-483c-b3ed-5c079c3762f7"),
-                            CompanyName = "Epoch",
-                            Dietary = 1,
-                            Email = "P1@gmail.com",
-                            FirstName = "P1",
-                            PhoneNumber = 625896325
-                        },
-                        new
-                        {
-                            PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13"),
-                            CompanyName = "Namtek",
-                            Dietary = 0,
-                            Email = "P2@gmail.com",
-                            FirstName = "P2",
-                            PhoneNumber = 786525896
-                        });
                 });
 
             modelBuilder.Entity("Delegate_Training_Registration.DataAccess.Models.PhysicalAddress", b =>
@@ -128,22 +97,6 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                     b.HasIndex("PersonID");
 
                     b.ToTable("PhysicalAddresses");
-
-                    b.HasData(
-                        new
-                        {
-                            PhysicalAddressesID = new Guid("c6b59163-5a28-42ce-952c-f5b0b390865a"),
-                            PersonID = new Guid("8ce12c33-3a41-483c-b3ed-5c079c3762f7"),
-                            PostalCode = 1111,
-                            StreetAddress = "P1Street"
-                        },
-                        new
-                        {
-                            PhysicalAddressesID = new Guid("e78f535c-d26c-4f18-bcaf-3b01d66942d8"),
-                            PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13"),
-                            PostalCode = 1100,
-                            StreetAddress = "P2Street"
-                        });
                 });
 
             modelBuilder.Entity("Delegate_Training_Registration.DataAccess.Models.RegisteredTrainings", b =>
@@ -166,20 +119,6 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                     b.HasIndex("TrainingID");
 
                     b.ToTable("RegisteredTrainings");
-
-                    b.HasData(
-                        new
-                        {
-                            RegisteredTrainingsID = new Guid("59417cdd-0875-4385-bf11-c692583912f0"),
-                            PersonID = new Guid("8ce12c33-3a41-483c-b3ed-5c079c3762f7"),
-                            TrainingID = new Guid("7c45fd03-f621-418d-92b5-541364f13e97")
-                        },
-                        new
-                        {
-                            RegisteredTrainingsID = new Guid("33372fd5-4c85-4b76-bbed-58f0365dbc74"),
-                            PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13"),
-                            TrainingID = new Guid("eb0551e1-87ff-4e9e-8806-8be3b2413674")
-                        });
                 });
 
             modelBuilder.Entity("Delegate_Training_Registration.DataAccess.Models.Training", b =>
@@ -196,7 +135,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("TrainingCost")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(4,2)");
 
                     b.Property<DateTime>("TrainingDate")
                         .HasColumnType("datetime2");
@@ -217,30 +156,6 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
                     b.HasIndex("CourseCode");
 
                     b.ToTable("Trainings");
-
-                    b.HasData(
-                        new
-                        {
-                            TrainingID = new Guid("7c45fd03-f621-418d-92b5-541364f13e97"),
-                            AvailableSeats = 10,
-                            CourseCode = new Guid("e288a507-bb38-477e-b985-c7afd1ee8057"),
-                            TrainingCost = 299.33m,
-                            TrainingDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrainingName = "CSC101",
-                            TrainingRegistrationClosingDate = new DateTime(1, 1, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrainingVenue = "Lab Center"
-                        },
-                        new
-                        {
-                            TrainingID = new Guid("eb0551e1-87ff-4e9e-8806-8be3b2413674"),
-                            AvailableSeats = 20,
-                            CourseCode = new Guid("7aaa6300-d539-45de-b0a1-2f4d5750f75b"),
-                            TrainingCost = 599.33m,
-                            TrainingDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrainingName = "MTM101",
-                            TrainingRegistrationClosingDate = new DateTime(1, 1, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrainingVenue = "Accounting Center"
-                        });
                 });
 
             modelBuilder.Entity("Delegate_Training_Registration.DataAccess.Models.PhysicalAddress", b =>
