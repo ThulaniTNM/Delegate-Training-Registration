@@ -1,4 +1,6 @@
+using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Data;
+using Delegate_Training_Registration.DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Delegate_Training_Registration.WebAPI
@@ -16,6 +18,7 @@ namespace Delegate_Training_Registration.WebAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DelegateTrainingRegistrationConnection"));
             });
 
+            builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
