@@ -1,6 +1,7 @@
 using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Data;
 using Delegate_Training_Registration.DataAccess.Repositories;
+using Delegate_Training_Registration.WebAPI.API_Extentsions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Delegate_Training_Registration.WebAPI
@@ -32,6 +33,8 @@ namespace Delegate_Training_Registration.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseGlobalErrorHandlingMiddleware();
 
             app.UseHttpsRedirection();
 
