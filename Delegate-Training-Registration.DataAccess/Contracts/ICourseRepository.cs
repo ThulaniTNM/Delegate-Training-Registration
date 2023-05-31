@@ -6,5 +6,6 @@ namespace Delegate_Training_Registration.DataAccess.Contracts
     {
         IEnumerable<Course> GetAllCourses(bool isTrackingChanges);
         Course GetCourse(Guid courseCode, bool isTrackingChanges);
+        void CreateCourse(Course course);
     }
 }

@@ -28,5 +28,10 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
             var resultSet = isTrackingChanges ? this.table.Where(condition) : this.table.AsNoTracking().Where(condition);
             return resultSet;
         }
+
+        public void Create(T entity)
+        {
+            this.table.Add(entity);
+        }
     }
 }

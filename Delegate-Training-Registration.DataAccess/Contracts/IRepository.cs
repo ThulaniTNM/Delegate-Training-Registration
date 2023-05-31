@@ -4,5 +4,6 @@
     {
         IEnumerable<T> GetAll(bool isTrackingChanges);
         IEnumerable<T> GetByCondition(Func<T, bool> condition, bool isTrackingChanges);
+        void Create(T entity);
     }
 }

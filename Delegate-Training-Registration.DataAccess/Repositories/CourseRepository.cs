@@ -25,5 +25,10 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
             var course = this.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges).FirstOrDefault();
             return course;
         }
+
+        public void CreateCourse(Course course)
+        {
+            this.Create(course);
+        }
     }
 }
