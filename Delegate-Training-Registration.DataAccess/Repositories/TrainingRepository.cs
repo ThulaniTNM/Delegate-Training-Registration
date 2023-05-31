@@ -13,7 +13,7 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
             this._context = context;
         }
 
-        public IEnumerable<Training> GetCourseTrainings(Guid courseCode, bool isTrackingChanges)
+        public IEnumerable<Training> GetTrainings(Guid courseCode, bool isTrackingChanges)
         {
             var courseTrainings = this.GetByCondition(training => training.CourseCode.Equals(courseCode), isTrackingChanges);
             return courseTrainings.OrderBy(training => training.TrainingName);
