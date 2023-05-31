@@ -20,7 +20,12 @@ namespace Delegate_Training_Registration.WebAPI
             });
 
             builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(configs =>
+                {
+                    configs.RespectBrowserAcceptHeader = true;
+                    configs.ReturnHttpNotAcceptable = true;
+                }
+            ).AddXmlDataContractSerializerFormatters();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
