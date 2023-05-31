@@ -14,12 +14,16 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{courseCode}")]
+        [HttpGet("{courseCode}", Name = "GetCourse")]
         public ActionResult<Course> GetCourse(Guid courseCode)
         {
             return Ok();
         }
 
         // post
+        public ActionResult<Course> CreateCourse(Course course)
+        {
+            return CreatedAtRoute(nameof(GetCourse), new { courseCode = 0 }, course);
+        }
     }
 }
