@@ -35,6 +35,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
         public void CreateCourse(Course course)
         {
             this._repository.Courses.Create(course);
+            this._repository.Save();
         }
     }
 }

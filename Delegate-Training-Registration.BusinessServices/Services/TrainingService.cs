@@ -48,6 +48,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
             training.CourseCode = courseCode;
             this._repository.Trainings.Create(training);
+            this._repository.Save();
         }
     }
 }

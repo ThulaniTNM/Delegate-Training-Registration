@@ -4,5 +4,6 @@
     {
         public ICourseRepository Courses { get; }
         public ITrainingRepository Trainings { get; }
+        public void Save();
     }
 }
