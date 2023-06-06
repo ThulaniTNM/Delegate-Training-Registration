@@ -24,7 +24,10 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
         public Training GetTraining(Guid courseCode, Guid trainingId, bool isTrackingChanges)
         {
-            this.GetTrainings(courseCode, isTrackingChanges);
+            var courseTrainingsCheck = this._repository.Trainings.GetByCondition(training => training.CourseCode.Equals(courseCode), isTrackingChanges);
+
+            if (!courseTrainingsCheck.Any())
+                throw new KeyNotFoundException($"Trainings for course :{courseCode}, not available.");
 
             var courseTrainings = this._repository.Trainings.GetByCondition(training =>
                                                                                                                     training.CourseCode.Equals(courseCode) && training.TrainingID.Equals(trainingId),
@@ -39,6 +42,10 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
         public void CreateTraining(Guid courseCode, Training training)
         {
+            var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), false).FirstOrDefault();
+            if (course == null)
+                throw new KeyNotFoundException($"Course : {courseCode}, not available.");
+
             training.CourseCode = courseCode;
             this._repository.Trainings.Create(training);
         }

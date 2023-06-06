@@ -24,7 +24,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
         public Course GetCourse(Guid courseCode, bool isTrackingChanges)
         {
-            var course = this._repository.Courses.(course => course.CourseCode.Equals(courseCode), isTrackingChanges).FirstOrDefault();
+            var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges).FirstOrDefault();
 
             if (course == null)
                 throw new KeyNotFoundException($"Course : {courseCode}, not available.");
