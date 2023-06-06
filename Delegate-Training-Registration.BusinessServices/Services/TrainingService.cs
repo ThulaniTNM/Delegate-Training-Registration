@@ -12,6 +12,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
         {
             this._repository = repository;
         }
+
         public IEnumerable<Training> GetTrainings(Guid courseCode, bool isTrackingChanges)
         {
             var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges);
