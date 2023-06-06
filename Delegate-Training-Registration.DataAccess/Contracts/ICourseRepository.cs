@@ -2,10 +2,7 @@
 
 namespace Delegate_Training_Registration.DataAccess.Contracts
 {
-    public interface ICourseRepository
+    public interface ICourseRepository : IGenericRepository<Course>
     {
-        IEnumerable<Course> GetAllCourses(bool isTrackingChanges);
-        Course GetCourse(Guid courseCode, bool isTrackingChanges);
-        void CreateCourse(Course course);
     }
 }

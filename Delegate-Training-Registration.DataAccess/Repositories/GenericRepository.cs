@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Delegate_Training_Registration.DataAccess.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly DelegateTrainingRegistrationContext _context;
         private DbSet<T> table;
-        public Repository(DelegateTrainingRegistrationContext context)
+        public GenericRepository(DelegateTrainingRegistrationContext context)
         {
             this._context = context;
             this.table = context.Set<T>();

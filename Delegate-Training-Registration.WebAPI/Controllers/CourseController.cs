@@ -23,6 +23,8 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
         // post
         public ActionResult<Course> CreateCourse(Course course)
         {
+
+            // use tracked saved course entity for route data.
             return CreatedAtRoute(nameof(GetCourse), new { courseCode = 0 }, course);
         }
     }
