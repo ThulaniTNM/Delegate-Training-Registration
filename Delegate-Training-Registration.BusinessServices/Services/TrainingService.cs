@@ -14,6 +14,11 @@ namespace Delegate_Training_Registration.BusinessServices.Services
         }
         public IEnumerable<Training> GetTrainings(Guid courseCode, bool isTrackingChanges)
         {
+            var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges);
+
+            if (course == null)
+                throw new KeyNotFoundException($"Course :{courseCode}, not available");
+
             var courseTrainings = this._repository.Trainings.GetByCondition(training => training.CourseCode.Equals(courseCode), isTrackingChanges);
 
             if (!courseTrainings.Any())
@@ -24,18 +29,17 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
         public Training GetTraining(Guid courseCode, Guid trainingId, bool isTrackingChanges)
         {
-            var courseTrainingsCheck = this._repository.Trainings.GetByCondition(training => training.CourseCode.Equals(courseCode), isTrackingChanges);
+            var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges);
 
-            if (!courseTrainingsCheck.Any())
-                throw new KeyNotFoundException($"Trainings for course :{courseCode}, not available.");
+            if (course == null)
+                throw new KeyNotFoundException($"Course :{courseCode}, not available");
 
-            var courseTrainings = this._repository.Trainings.GetByCondition(training =>
-                                                                                                                    training.CourseCode.Equals(courseCode) && training.TrainingID.Equals(trainingId),
-                                                                                                                    isTrackingChanges);
+            var training = this._repository.Trainings.GetByCondition(training =>
+                                                                                                                  training.CourseCode.Equals(courseCode) && training.TrainingID.Equals(trainingId),
+                                                                                                                  isTrackingChanges).FirstOrDefault();
 
-            var training = courseTrainings.FirstOrDefault();
             if (training == null)
-                throw new KeyNotFoundException($"Training : {trainingId}, not available.");
+                throw new KeyNotFoundException($"Training : {trainingId}, for course : {courseCode}, not available.");
 
             return training;
         }
@@ -48,6 +52,13 @@ namespace Delegate_Training_Registration.BusinessServices.Services
 
             training.CourseCode = courseCode;
             this._repository.Trainings.Create(training);
+            this._repository.Save();
+        }
+
+        public void DeleteTraining(Guid courseCode, Guid trainingId)
+        {
+            Training training = this.GetTraining(courseCode, trainingId, false);
+            this._repository.Trainings.Delete(training);
             this._repository.Save();
         }
     }

@@ -33,5 +33,10 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
         {
             this.table.Add(entity);
         }
+
+        public void Delete(T entity)
+        {
+            this.table.Remove(entity);
+        }
     }
 }

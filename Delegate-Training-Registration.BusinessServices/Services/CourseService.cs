@@ -1,9 +1,10 @@
-﻿using Delegate_Training_Registration.DataAccess.Contracts;
+﻿using Delegate_Training_Registration.BusinessServices.Service_Contract;
+using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Models;
 
 namespace Delegate_Training_Registration.BusinessServices.Services
 {
-    public class CourseService
+    public class CourseService : ICourseService
     {
         private readonly IRepositoryManager _repository;
 
@@ -35,6 +36,13 @@ namespace Delegate_Training_Registration.BusinessServices.Services
         public void CreateCourse(Course course)
         {
             this._repository.Courses.Create(course);
+            this._repository.Save();
+        }
+
+        public void DeleteCourse(Guid courseCode)
+        {
+            var course = this.GetCourse(courseCode, false);
+            this._repository.Courses.Delete(course);
             this._repository.Save();
         }
     }
