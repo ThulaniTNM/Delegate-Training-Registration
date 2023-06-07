@@ -45,5 +45,19 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._repository.Courses.Delete(course);
             this._repository.Save();
         }
+
+        public void UpdateCourse(Guid courseCode, Course courseUpdate)
+        {
+            if (courseUpdate == null) // dto might have annotations to prevent null input.
+                throw new ArgumentNullException($"Course changes empty");
+
+            var course = this.GetCourse(courseCode, true);
+
+            // update via automapper binding dto changes to tracked entity.
+            course.CourseName = courseUpdate.CourseName;
+            course.CourseDescription = courseUpdate.CourseDescription;
+
+            this._repository.Save();
+        }
     }
 }

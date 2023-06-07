@@ -62,5 +62,23 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._repository.Trainings.Delete(training);
             this._repository.Save();
         }
+
+        public void UpdateTraining(Guid courseCode, Guid trainingId, Training trainingUpdate)
+        {
+            if (trainingUpdate == null)
+                throw new ArgumentNullException("Training changes empty");
+
+            var training = this.GetTraining(courseCode, trainingId, true);
+
+            // use dto for updates.
+            training.TrainingName = trainingUpdate.TrainingName;
+            training.TrainingVenue = trainingUpdate.TrainingVenue;
+            training.TrainingCost = trainingUpdate.TrainingCost;
+            training.TrainingDate = trainingUpdate.TrainingDate;
+            training.TrainingRegistrationClosingDate = trainingUpdate.TrainingRegistrationClosingDate;
+            training.AvailableSeats = trainingUpdate.AvailableSeats;
+
+            this._repository.Save();
+        }
     }
 }
