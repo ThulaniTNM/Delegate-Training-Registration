@@ -1,8 +1,11 @@
+using Delegate_Training_Registration.BusinessServices.Mappers;
+using Delegate_Training_Registration.BusinessServices.Service_Contract;
+using Delegate_Training_Registration.BusinessServices.Services;
 using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Data;
 using Delegate_Training_Registration.DataAccess.Repositories;
-using Delegate_Training_Registration.WebAPI.API_Extentsions;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Delegate_Training_Registration.WebAPI
 {
@@ -19,9 +22,12 @@ namespace Delegate_Training_Registration.WebAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DelegateTrainingRegistrationConnection"));
             });
 
-            builder.Services.AddAutoMapper(typeof(Program));
+            builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(DelegateTrainingRegistrationMapper)));
+            builder.Services.AddScoped<ICourseService, CourseService>();
+            builder.Services.AddScoped<ITrainingService, TrainingService>();
             builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 
+            // content negotiation config between client & server.
             builder.Services.AddControllers(configs =>
                 {
                     configs.RespectBrowserAcceptHeader = true;
@@ -41,7 +47,7 @@ namespace Delegate_Training_Registration.WebAPI
                 app.UseSwaggerUI();
             }
 
-            app.UseGlobalErrorHandlingMiddleware();
+            //app.UseGlobalErrorHandlingMiddleware();
 
             app.UseHttpsRedirection();
 
