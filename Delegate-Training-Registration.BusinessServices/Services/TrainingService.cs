@@ -1,4 +1,5 @@
-﻿using Delegate_Training_Registration.BusinessServices.Service_Contract;
+﻿using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.WriteDTO;
+using Delegate_Training_Registration.BusinessServices.Service_Contract;
 using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Models;
 
@@ -45,14 +46,14 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             return training;
         }
 
-        public void CreateTraining(Guid courseCode, Training training)
+        public void CreateTraining(Guid courseCode, TrainingWriteDTO trainingDTO)
         {
             var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), false).FirstOrDefault();
             if (course == null)
                 throw new KeyNotFoundException($"Course : {courseCode}, not available.");
 
-            training.CourseCode = courseCode;
-            this._repository.Trainings.Create(training);
+            trainingDTO.CourseCode = courseCode;
+            this._repository.Trainings.Create(trainingDTO);
             this._repository.Save();
         }
 
