@@ -1,4 +1,8 @@
-﻿using Delegate_Training_Registration.BusinessServices.Service_Contract;
+﻿using AutoMapper;
+using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.ReadDTO;
+using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.WriteDTO;
+using Delegate_Training_Registration.BusinessServices.Helpers;
+using Delegate_Training_Registration.BusinessServices.Service_Contract;
 using Delegate_Training_Registration.DataAccess.Contracts;
 using Delegate_Training_Registration.DataAccess.Models;
 
@@ -7,56 +11,62 @@ namespace Delegate_Training_Registration.BusinessServices.Services
     public class CourseService : ICourseService
     {
         private readonly IRepositoryManager _repository;
+        private readonly IMapper _mapper;
 
-        public CourseService(IRepositoryManager repository)
+        public CourseService(IRepositoryManager repository, IMapper mapper)
         {
             this._repository = repository;
+            this._mapper = mapper;
         }
 
-        public IEnumerable<Course> GetAllCourses(bool isTrackingChanges)
+        public IEnumerable<CourseReadDTO> GetAllCourses(bool isTrackingChanges)
         {
             var courses = this._repository.Courses.GetAll(isTrackingChanges).OrderBy(c => c.CourseName).ToList();
 
-            if (!courses.Any())
-                throw new KeyNotFoundException("No course available");
+            ExceptionHelpers.CoursesNullCheck(courses);
 
-            return courses;
+            var coursesReadDTO = this._mapper.Map<IEnumerable<CourseReadDTO>>(courses);
+            return coursesReadDTO;
         }
 
-        public Course GetCourse(Guid courseCode, bool isTrackingChanges)
+        public CourseReadDTO GetCourse(Guid courseCode, bool isTrackingChanges)
         {
             var course = this._repository.Courses.GetByCondition(course => course.CourseCode.Equals(courseCode), isTrackingChanges).FirstOrDefault();
 
-            if (course == null)
-                throw new KeyNotFoundException($"Course : {courseCode}, not available.");
+            ExceptionHelpers.CourseNullCheck(course);
 
-            return course;
+            var courseReadDTO = this._mapper.Map<CourseReadDTO>(course);
+            return courseReadDTO;
         }
 
-        public void CreateCourse(Course course)
+        public CourseReadDTO CreateCourse(CourseWriteDTO courseCreate)
         {
+            var course = this._mapper.Map<Course>(courseCreate);
+
             this._repository.Courses.Create(course);
             this._repository.Save();
+
+            var courseReadDTO = this._mapper.Map<CourseReadDTO>(course);
+            return courseReadDTO;
         }
 
         public void DeleteCourse(Guid courseCode)
         {
-            var course = this.GetCourse(courseCode, false);
+            var course = this._repository.Courses.GetByCondition(c => c.CourseCode.Equals(courseCode), true).FirstOrDefault();
+
+            ExceptionHelpers.CourseNullCheck(course);
+
             this._repository.Courses.Delete(course);
             this._repository.Save();
         }
 
-        public void UpdateCourse(Guid courseCode, Course courseUpdate)
+        public void UpdateCourse(Guid courseCode, CourseWriteDTO courseUpdate)
         {
-            if (courseUpdate == null) // dto might have annotations to prevent null input.
-                throw new ArgumentNullException($"Course changes empty");
+            var course = this._repository.Courses.GetByCondition(c => c.CourseCode.Equals(courseCode), true).FirstOrDefault();
 
-            var course = this.GetCourse(courseCode, true);
+            ExceptionHelpers.CourseNullCheck(course);
 
-            // update via automapper binding dto changes to tracked entity.
-            course.CourseName = courseUpdate.CourseName;
-            course.CourseDescription = courseUpdate.CourseDescription;
-
+            this._mapper.Map(courseUpdate, course);
             this._repository.Save();
         }
     }

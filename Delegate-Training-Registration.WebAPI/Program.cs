@@ -19,7 +19,9 @@ namespace Delegate_Training_Registration.WebAPI
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DelegateTrainingRegistrationConnection"));
             });
 
+            builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+
             builder.Services.AddControllers(configs =>
                 {
                     configs.RespectBrowserAcceptHeader = true;
