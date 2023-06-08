@@ -13,5 +13,15 @@ namespace Delegate_Training_Registration.BusinessServices.Helpers
         {
             if (!coursesCheck.Any()) throw new KeyNotFoundException("No course available");
         }
+
+        public static void TrainingForCourseNullCheck(Training trainingCheck, Guid courseCode)
+        {
+            if (trainingCheck == null) throw new KeyNotFoundException($"Training : {trainingCheck.TrainingID}, for course : {courseCode}, not available.");
+        }
+
+        public static void TrainingsForCourseNullCheck(IEnumerable<Training> courseTrainings, Guid courseCode)
+        {
+            if (!courseTrainings.Any()) throw new KeyNotFoundException($"Trainings for course :{courseCode}, not available.");
+        }
     }
 }
