@@ -7,11 +7,11 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
 {
     [Route("api/courses")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CoursesController : ControllerBase
     {
         private readonly ICourseService _courseService;
 
-        public CourseController(ICourseService courseService)
+        public CoursesController(ICourseService courseService)
         {
             this._courseService = courseService;
         }
