@@ -8,12 +8,13 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
         private readonly DelegateTrainingRegistrationContext _context;
         public ICourseRepository Courses { get; private set; }
         public ITrainingRepository Trainings { get; private set; }
-
+        public IPersonRepository People { get; private set; }
         public RepositoryManager(DelegateTrainingRegistrationContext context)
         {
             this._context = context;
             Courses = new CourseRepository(context);
             Trainings = new TrainingRepository(context);
+            People = new PersonRepository(context);
         }
 
         public void Save()
