@@ -14,6 +14,12 @@ namespace Delegate_Training_Registration.BusinessServices.Mappers
 
             CreateMap<Training, TrainingReadDTO>().ReverseMap();
             CreateMap<Training, TrainingWriteDTO>().ReverseMap();
+
+            CreateMap<Person, PersonWriteDTO>().ReverseMap();
+            CreateMap<Person, PersonReadDTO>().ReverseMap();
+
+            CreateMap<PhysicalAddress, PhysicalAddressReadDTO>().ReverseMap();
+            CreateMap<PhysicalAddress, PhysicalAddressWriteDTO>().ReverseMap();
         }
     }
 }

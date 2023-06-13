@@ -1,5 +1,5 @@
-﻿using Delegate_Training_Registration.BusinessServices.Service_Contract;
-using Delegate_Training_Registration.DataAccess.Models;
+﻿using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.WriteDTO;
+using Delegate_Training_Registration.BusinessServices.Service_Contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Delegate_Training_Registration.WebAPI.Controllers
@@ -15,13 +15,14 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
             this._personService = personService;
         }
         // can add addtional features of other crud operations if requirements changes.
+        // add person data along with child resource of their address.
         [HttpPost]
-        public ActionResult<Person> CreatePerson([FromBody] Person personFormData)
+        public void CreatePerson([FromBody] PersonWriteDTO personFormData)
         {
             var person = this._personService.RegisterPerson(personFormData);
 
             // GetPerson method not existing yet, can be created through product requirement updates.
-            return CreatedAtRoute("GetPerson", new { id = person.PersonID }, person);
+            //return CreatedAtRoute("GetPerson", new { id = person.PersonID }, person);
         }
     }
 }

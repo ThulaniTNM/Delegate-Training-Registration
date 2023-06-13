@@ -5,6 +5,7 @@
         public ICourseRepository Courses { get; }
         public ITrainingRepository Trainings { get; }
         public IPersonRepository People { get; }
+        public IPhysicalAddressRepository PhysicalAddresses { get; }
         public void Save();
     }
 }

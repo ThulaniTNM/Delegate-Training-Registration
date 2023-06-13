@@ -26,6 +26,7 @@ namespace Delegate_Training_Registration.WebAPI
             builder.Services.AddScoped<ICourseService, CourseService>();
             builder.Services.AddScoped<ITrainingService, TrainingService>();
             builder.Services.AddScoped<IPersonService, PersonService>();
+            builder.Services.AddScoped<IPhysicalAddressService, PhysicalAddressService>();
             builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 
             // content negotiation config between client & server.

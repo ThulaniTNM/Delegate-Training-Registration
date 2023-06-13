@@ -31,7 +31,7 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CourseReadDTO> CreateCourse([FromBody] CourseWriteDTO courseFormData)
+        public IActionResult CreateCourse([FromBody] CourseWriteDTO courseFormData)
         {
             var course = this._courseService.CreateCourse(courseFormData);
             return CreatedAtRoute(nameof(GetCourse), new { courseCode = course.CourseCode }, course);

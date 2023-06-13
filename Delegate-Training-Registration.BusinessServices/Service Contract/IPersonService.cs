@@ -1,9 +1,10 @@
-﻿using Delegate_Training_Registration.DataAccess.Models;
+﻿using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.ReadDTO;
+using Delegate_Training_Registration.BusinessServices.Data_transfer_objects.WriteDTO;
 
 namespace Delegate_Training_Registration.BusinessServices.Service_Contract
 {
     public interface IPersonService
     {
-        Person RegisterPerson(Person person);
+        PersonReadDTO RegisterPerson(PersonWriteDTO personCreate);
     }
 }
