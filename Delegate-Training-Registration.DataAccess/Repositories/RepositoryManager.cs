@@ -10,6 +10,9 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
         public ITrainingRepository Trainings { get; private set; }
         public IPersonRepository People { get; private set; }
         public IPhysicalAddressRepository PhysicalAddresses { get; private set; }
+
+        public DelegateTrainingRegistrationContext Context { get { return this._context; } }
+
         public RepositoryManager(DelegateTrainingRegistrationContext context)
         {
             this._context = context;

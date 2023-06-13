@@ -19,16 +19,20 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._mapper = mapper;
             this._physicalAddressService = physicalAddressService;
         }
-        public PersonReadDTO RegisterPerson(PersonWriteDTO personFormData)
+        public PersonReadDTO RegisterPerson(PersonWriteDTO personFormData, Guid trainingID)
         {
             var person = this._mapper.Map<Person>(personFormData);
             var physicalAddressFormData = personFormData.PhyiscalAddress.FirstOrDefault();
+
+            var transaction = this._repository.Context.Database.BeginTransaction();
 
             this._repository.People.Create(person);
             this._repository.Save();
 
             this._physicalAddressService.CreatePhysicalAddress(person.PersonID, physicalAddressFormData);
+
             this._repository.Save();
+            transaction.Commit();
 
             var personReturn = this._mapper.Map<PersonReadDTO>(person);
             return personReturn;

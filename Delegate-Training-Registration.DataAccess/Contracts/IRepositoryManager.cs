@@ -1,4 +1,6 @@
-﻿namespace Delegate_Training_Registration.DataAccess.Contracts
+﻿using Delegate_Training_Registration.DataAccess.Data;
+
+namespace Delegate_Training_Registration.DataAccess.Contracts
 {
     public interface IRepositoryManager
     {
@@ -6,6 +8,7 @@
         public ITrainingRepository Trainings { get; }
         public IPersonRepository People { get; }
         public IPhysicalAddressRepository PhysicalAddresses { get; }
+        public DelegateTrainingRegistrationContext Context { get; }
         public void Save();
     }
 }

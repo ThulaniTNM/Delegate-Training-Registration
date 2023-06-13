@@ -17,9 +17,9 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
         // can add addtional features of other crud operations if requirements changes.
         // add person data along with child resource of their address.
         [HttpPost]
-        public void CreatePerson([FromBody] PersonWriteDTO personFormData)
+        public void CreatePerson(Guid trainingID, [FromBody] PersonWriteDTO personFormData)
         {
-            var person = this._personService.RegisterPerson(personFormData);
+            var person = this._personService.RegisterPerson(personFormData, trainingID);
 
             // GetPerson method not existing yet, can be created through product requirement updates.
             //return CreatedAtRoute("GetPerson", new { id = person.PersonID }, person);
