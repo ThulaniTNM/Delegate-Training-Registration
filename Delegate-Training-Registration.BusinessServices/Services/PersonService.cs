@@ -12,12 +12,14 @@ namespace Delegate_Training_Registration.BusinessServices.Services
         private readonly IRepositoryManager _repository;
         private readonly IMapper _mapper;
         private readonly IPhysicalAddressService _physicalAddressService;
+        private readonly IRegisterDelegateTrainingService _registerDelegateTrainingService;
 
-        public PersonService(IRepositoryManager repository, IMapper mapper, IPhysicalAddressService physicalAddressService)
+        public PersonService(IRepositoryManager repository, IMapper mapper, IPhysicalAddressService physicalAddressService, IRegisterDelegateTrainingService registerDelegateTrainingService)
         {
             this._repository = repository;
             this._mapper = mapper;
             this._physicalAddressService = physicalAddressService;
+            this._registerDelegateTrainingService = registerDelegateTrainingService;
         }
         public PersonReadDTO RegisterPerson(PersonWriteDTO personFormData, Guid trainingID)
         {
@@ -30,8 +32,11 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._repository.Save();
 
             this._physicalAddressService.CreatePhysicalAddress(person.PersonID, physicalAddressFormData);
-
             this._repository.Save();
+
+            this._registerDelegateTrainingService.CreateDelegateTraining(person.PersonID, trainingID);
+            this._repository.Save();
+
             transaction.Commit();
 
             var personReturn = this._mapper.Map<PersonReadDTO>(person);

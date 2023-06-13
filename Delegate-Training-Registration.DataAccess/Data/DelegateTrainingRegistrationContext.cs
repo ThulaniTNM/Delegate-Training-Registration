@@ -15,7 +15,7 @@ namespace Delegate_Training_Registration.DataAccess.Data
         public DbSet<Person> People { get; set; }
         public DbSet<PhysicalAddress> PhysicalAddresses { get; set; }
         public DbSet<Training> Trainings { get; set; }
-        public DbSet<RegisteredTrainings> RegisteredTrainings { get; set; }
+        public DbSet<RegisterDelegateTrainings> RegisteredDelegateTrainings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace Delegate_Training_Registration.DataAccess.Data
             modelBuilder.Entity<Course>().Property(c => c.CourseCode).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Person>().Property(p => p.PersonID).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<PhysicalAddress>().Property(p => p.PhysicalAddressesID).HasDefaultValueSql("NEWID()");
-            modelBuilder.Entity<RegisteredTrainings>().Property(r => r.RegisteredTrainingsID).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<RegisterDelegateTrainings>().Property(r => r.RegisteredTrainingsID).HasDefaultValueSql("NEWID()");
             modelBuilder.Entity<Training>().Property(t => t.TrainingID).HasDefaultValueSql("NEWID()");
 
             // seeding db with data.

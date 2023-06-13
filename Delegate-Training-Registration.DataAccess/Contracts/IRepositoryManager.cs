@@ -8,6 +8,7 @@ namespace Delegate_Training_Registration.DataAccess.Contracts
         public ITrainingRepository Trainings { get; }
         public IPersonRepository People { get; }
         public IPhysicalAddressRepository PhysicalAddresses { get; }
+        public IRegisterDelegateTrainingRepository RegisterDelegateTrainings { get; }
         public DelegateTrainingRegistrationContext Context { get; }
         public void Save();
     }

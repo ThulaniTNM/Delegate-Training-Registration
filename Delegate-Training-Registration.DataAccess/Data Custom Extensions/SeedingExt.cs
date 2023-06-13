@@ -44,9 +44,9 @@ namespace Delegate_Training_Registration.DataAccess.Extensions
                 new PhysicalAddress() { PhysicalAddressesID = new Guid("e78f535c-d26c-4f18-bcaf-3b01d66942d8"), StreetAddress = "P2Street", PostalCode = 1100, PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13") }
             );
 
-            modelBuilder.Entity<RegisteredTrainings>().HasData(
-                new RegisteredTrainings() { RegisteredTrainingsID = new Guid("59417cdd-0875-4385-bf11-c692583912f0"), PersonID = new Guid("8ce12c33-3a41-483c-b3ed-5c079c3762f7"), TrainingID = new Guid("7c45fd03-f621-418d-92b5-541364f13e97") },
-                new RegisteredTrainings() { RegisteredTrainingsID = new Guid("33372fd5-4c85-4b76-bbed-58f0365dbc74"), PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13"), TrainingID = new Guid("eb0551e1-87ff-4e9e-8806-8be3b2413674") }
+            modelBuilder.Entity<RegisterDelegateTrainings>().HasData(
+                new RegisterDelegateTrainings() { RegisteredTrainingsID = new Guid("59417cdd-0875-4385-bf11-c692583912f0"), PersonID = new Guid("8ce12c33-3a41-483c-b3ed-5c079c3762f7"), TrainingID = new Guid("7c45fd03-f621-418d-92b5-541364f13e97") },
+                new RegisterDelegateTrainings() { RegisteredTrainingsID = new Guid("33372fd5-4c85-4b76-bbed-58f0365dbc74"), PersonID = new Guid("d72c6fef-e0b4-4e85-a630-b026118eef13"), TrainingID = new Guid("eb0551e1-87ff-4e9e-8806-8be3b2413674") }
             );
         }
     }

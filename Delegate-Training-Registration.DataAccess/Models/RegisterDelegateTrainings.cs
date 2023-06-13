@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Delegate_Training_Registration.DataAccess.Models
 {
-    public class RegisteredTrainings
+    public class RegisterDelegateTrainings
     {
+        [Key]
         public Guid RegisteredTrainingsID { get; set; }
 
         // navigation props
