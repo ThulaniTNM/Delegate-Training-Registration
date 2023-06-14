@@ -39,7 +39,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
 
                     b.HasKey("CourseCode");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
 
                     b.HasData(
                         new
@@ -83,7 +83,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
 
                     b.HasKey("PersonID");
 
-                    b.ToTable("People");
+                    b.ToTable("People", (string)null);
 
                     b.HasData(
                         new
@@ -127,7 +127,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
 
                     b.HasIndex("PersonID");
 
-                    b.ToTable("PhysicalAddresses");
+                    b.ToTable("PhysicalAddresses", (string)null);
 
                     b.HasData(
                         new
@@ -165,7 +165,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
 
                     b.HasIndex("TrainingID");
 
-                    b.ToTable("RegisteredDelegateTrainings");
+                    b.ToTable("RegisteredDelegateTrainings", (string)null);
 
                     b.HasData(
                         new
@@ -216,7 +216,7 @@ namespace Delegate_Training_Registration.DataAccess.Migrations
 
                     b.HasIndex("CourseCode");
 
-                    b.ToTable("Trainings");
+                    b.ToTable("Trainings", (string)null);
 
                     b.HasData(
                         new

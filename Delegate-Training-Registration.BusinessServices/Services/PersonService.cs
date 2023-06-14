@@ -21,7 +21,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._physicalAddressService = physicalAddressService;
             this._registerDelegateTrainingService = registerDelegateTrainingService;
         }
-        public PersonReadDTO RegisterPerson(PersonWriteDTO personFormData, Guid trainingID)
+        public PersonReadDTO RegisterPerson(PersonWriteDTO personFormData, Guid courseCode, Guid trainingID)
         {
             var person = this._mapper.Map<Person>(personFormData);
             var physicalAddressFormData = personFormData.PhyiscalAddress.FirstOrDefault();
@@ -37,10 +37,15 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._registerDelegateTrainingService.CreateDelegateTraining(person.PersonID, trainingID);
             this._repository.Save();
 
-            transaction.Commit();
+            // after registering delegate for training remove a seat.
+            var training = this._repository.Trainings.GetByCondition(t => t.CourseCode.Equals(courseCode) && t.TrainingID.Equals(trainingID), true).FirstOrDefault();
+            training.AvailableSeats--;
+            this._repository.Save();
+
+            transaction.Commit(); // if can't commit due to any error in transaction, throws error to be handled globally. // does it roll back or doesn't commit at all of all "mimicked savings"?
 
             var personReturn = this._mapper.Map<PersonReadDTO>(person);
-            return personReturn;
+            return personReturn; // data to return after user is registered for training can be business specified to know what kind of route to create for 201 created status.
         }
     }
 }

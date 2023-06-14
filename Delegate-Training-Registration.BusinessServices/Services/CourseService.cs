@@ -60,6 +60,7 @@ namespace Delegate_Training_Registration.BusinessServices.Services
             this._repository.Save();
         }
 
+        // no need to use repo for updating, a mapping to update input with tracked entity means saving will update tracked entity.
         public void UpdateCourse(Guid courseCode, CourseWriteDTO courseUpdate)
         {
             var course = this._repository.Courses.GetByCondition(c => c.CourseCode.Equals(courseCode), true).FirstOrDefault();

@@ -5,6 +5,6 @@ namespace Delegate_Training_Registration.BusinessServices.Service_Contract
 {
     public interface IPersonService
     {
-        PersonReadDTO RegisterPerson(PersonWriteDTO personCreate, Guid trainingID);
+        PersonReadDTO RegisterPerson(PersonWriteDTO personCreate, Guid courseCode, Guid trainingID);
     }
 }
