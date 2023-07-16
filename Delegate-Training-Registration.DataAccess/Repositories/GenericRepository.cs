@@ -14,21 +14,22 @@ namespace Delegate_Training_Registration.DataAccess.Repositories
 	  this.table = context.Set<T>();
 	}
 
-	public IEnumerable<T> GetAll(bool isTrackingChanges)
+	public async Task<IEnumerable<T>> GetAll(bool isTrackingChanges)
 	{
-	  var resultSet = isTrackingChanges ? this.table : this.table.AsNoTracking();
-	  return resultSet;
+	  var resultSet = isTrackingChanges ? this.table.ToListAsync() : this.table.AsNoTracking().ToListAsync();
+	  return await resultSet;
 	}
 
-	public IEnumerable<T> GetByCondition(Func<T, bool> condition, bool isTrackingChanges)
+	public async Task<IEnumerable<T>> GetByCondition(Func<T, bool> condition, bool isTrackingChanges)
 	{
-	  var resultSet = isTrackingChanges ? this.table.Where(condition) : this.table.AsNoTracking().Where(condition);
-	  return resultSet;
+	  var resultSet = isTrackingChanges ? this.table.ToListAsync() : this.table.AsNoTracking().ToListAsync();
+	  var filteredResultSet = await resultSet;
+	  return filteredResultSet.Where(condition);
 	}
 
-	public void Create(T entity)
+	public async Task Create(T entity)
 	{
-	  this.table.Add(entity);
+	  await this.table.AddAsync(entity);
 	}
 
 	public void Delete(T entity)
