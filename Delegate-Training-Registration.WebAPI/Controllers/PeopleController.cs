@@ -19,7 +19,7 @@ namespace Delegate_Training_Registration.WebAPI.Controllers
         [HttpPost]
         public void CreatePerson(Guid trainingID, [FromBody] PersonWriteDTO personFormData)
         {
-            var person = this._personService.RegisterPerson(personFormData, trainingID);
+            //var person = this._personService.RegisterPerson(personFormData, trainingID);
 
             // GetPerson method not existing yet, can be created through product requirement updates.
             //return CreatedAtRoute("GetPerson", new { id = person.PersonID }, person);

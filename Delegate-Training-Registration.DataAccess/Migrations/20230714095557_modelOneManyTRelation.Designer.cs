@@ -4,6 +4,7 @@ using Delegate_Training_Registration.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Delegate_Training_Registration.DataAccess.Migrations
 {
     [DbContext(typeof(DelegateTrainingRegistrationContext))]
-    partial class DelegateTrainingRegistrationContextModelSnapshot : ModelSnapshot
+    [Migration("20230714095557_modelOneManyTRelation")]
+    partial class modelOneManyTRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

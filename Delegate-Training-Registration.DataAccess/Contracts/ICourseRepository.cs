@@ -2,7 +2,7 @@
 
 namespace Delegate_Training_Registration.DataAccess.Contracts
 {
-    public interface ICourseRepository : IGenericRepository<Course>
-    {
-    }
+  public interface ICourseRepository : IGenericRepository<Course>
+  {
+  }
 }
