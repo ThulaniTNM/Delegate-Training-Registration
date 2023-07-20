@@ -7,13 +7,9 @@
 	<div class="card-body">
 		<h3>{{course?.CourseDescription}}</h3>
 	</div>
-	<div *ngIf="!hasCode" class="card-footer d-flex justify-content-between">
+	<div class="card-footer d-flex justify-content-between">
 		<button class="btn btn-primary w-100" (click)="viewCourse()">View</button>
 		<button class="btn btn-secondary w-100 mr-2 ml-2">Edit</button>
 		<button class="btn btn-danger w-100">Remove</button>
-	</div>
-
-	<div *ngIf="hasCode" class="card-footer">
-		<button class="btn btn-dark" (click)="courseList()">Back to Course List</button>
 	</div>
 </div>
