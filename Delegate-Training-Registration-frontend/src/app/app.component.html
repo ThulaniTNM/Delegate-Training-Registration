@@ -1,3 +1,103 @@
 <!-- Navigation header -->
+<nav class="navbar navbar-dark bg-dark navbar-expand-md mt-3">
+	<!-- brand -->
+	<a class="navbar-brand" routerLink="">
+		Delegate Training
+	</a>
+
+	<!-- collapse toggle button -->
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list"
+		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<!-- navigation links -->
+	<div class="collapse navbar-collapse" id="navbar-list">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" href="#">Courses</a>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" href="#">Trainings</a>
+			</li>
+			<li class="nav-item" routerLinkActive="active">
+				<a class="nav-link" href="#">People</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCreate" role="button"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Create
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdownCreate">
+					<a class="dropdown-item" href="#">Dashboard</a>
+					<a class="dropdown-item" href="#">Edit Profile</a>
+					<a class="dropdown-item" href="#">Log Out</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</nav>
+
 <!-- home | descriptive app text -->
-<!-- outlet to render -->
+<div class="container">
+	<div class="row d-flex justify-content-center">
+		<h2>Delegate Training Registration</h2>
+	</div>
+
+	<div class="row d-flex justify-content-center mb-4">
+		<!-- col1 -->
+		<div class="col-4">
+			<div class="card">
+				<!-- header -->
+				<div class="card-header text-center">
+					<h3 class="card-title">Creations</h3>
+				</div>
+				<!-- body -->
+				<div class="card-body">
+					<ul class="list-group text-white fw-bold">
+						<li class="list-group-item p-0 mb-3">
+							<a class="btn btn-primary w-100">Courses</a>
+						</li>
+
+						<li class="list-group-item  p-0 mb-3">
+							<a class="btn btn-primary w-100">Training</a>
+						</li>
+
+						<li class="list-group-item  p-0 mb-3">
+							<a class="btn btn-primary w-100">Person</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- col2 -->
+		<div class="col-4">
+			<div class="card">
+				<!-- header -->
+				<div class="card-header text-center">
+					<h3 class="card-title">Views</h3>
+				</div>
+				<!-- body -->
+				<div class="card-body">
+					<ul class="list-group text-white fw-bold">
+						<li class="list-group-item p-0 mb-3">
+							<a class="btn btn-primary w-100" routerLink="courses">Courses</a>
+						</li>
+
+						<li class="list-group-item  p-0 mb-3">
+							<a class="btn btn-primary w-100">Training</a>
+						</li>
+
+						<li class="list-group-item  p-0 mb-3">
+							<a class="btn btn-primary w-100">Person</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- outlet to render -->
+	<router-outlet></router-outlet>
+</div>
