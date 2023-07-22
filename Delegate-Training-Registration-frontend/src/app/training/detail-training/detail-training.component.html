@@ -1,0 +1,35 @@
+<div class="card text-center">
+	<div class="card-header">
+		<div class="card-title ">
+			<h4> {{training?.TrainingName}}</h4>
+		</div>
+	</div>
+	<div class="card-body">
+		<table class="table-hover table-bordered">
+			<thead class="bg-dark text-white">
+				<th> Name</th>
+				<th> Venue</th>
+				<th> Cost</th>
+				<th> Date</th>
+				<th> Closing Date</th>
+				<th> Available Seats</th>
+				<th> View</th>
+				<th> Edit</th>
+				<th> Delete</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{training.TrainingName}}</td>
+					<td>{{training.TrainingVenue}}</td>
+					<td>{{training.TrainingCost}}</td>
+					<td>{{training.TrainingDate}}</td>
+					<td>{{training.TrainingRegistrationClosingDate}}</td>
+					<td>{{training.AvailableSeats}}</td>
+					<td class="px-2"><button class="btn btn-primary trainingAction">View</button></td>
+					<td class="px-2"><button class="btn btn-secondary trainingAction">Edit</button> </td>
+					<td class="px-2"><button class="btn btn-danger trainingAction">Remove</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

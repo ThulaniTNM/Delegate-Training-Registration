@@ -9,16 +9,20 @@ import { DelegateTrainingRegistrationDataService } from 'src/app/services/delega
   styleUrls: ['./single-course.component.css']
 })
 export class SingleCourseComponent implements OnInit {
+  courseCode: string;
   course: Course | undefined;
   constructor(private router: Router, private route: ActivatedRoute, private delegateDataService: DelegateTrainingRegistrationDataService) { }
 
   ngOnInit(): void {
-    const courseCode = this.route.snapshot.paramMap.get("courseCode");
-    this.course = this.delegateDataService.getCourse(courseCode!);
+    this.courseCode = this.route.snapshot.paramMap.get("courseCode")!;
+    this.course = this.delegateDataService.getCourse(this.courseCode);
+  }
+
+  viewCourseTrainings(): void {
+    this.router.navigate(["trainings"], { relativeTo: this.route })
   }
 
   courseList(): void {
     this.router.navigate(["courses"]);
-
   }
 }

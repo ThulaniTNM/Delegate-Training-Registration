@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Delegate-Training-Registration-frontend';
   toggleNav: boolean;
   toggleNavItemDropdown: boolean;
 }

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-course.component.css']
 })
 export class ListCourseComponent implements OnInit {
-  courses: Course[] = [];
+  courses: Course[];
   constructor(private delegateDataService: DelegateTrainingRegistrationDataService) { }
 
   ngOnInit(): void {
