@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Delegate-Training-Registration-frontend';
+  toggleNav: boolean;
+  toggleNavItemDropdown: boolean;
 }
