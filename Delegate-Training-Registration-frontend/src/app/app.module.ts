@@ -7,6 +7,7 @@ import { DetailCourseComponent } from './course/detail-course/detail-course.comp
 import { ListCourseComponent } from './course/list-course/list-course.component';
 import { DelegateTrainingRegistrationDataService } from './services/delegate-training-registration-data-service.service';
 import { SingleCourseComponent } from './course/single-course/single-course.component';
+import { ListTrainingComponent } from './training/list-training/list-training.component';
 
 @NgModule
   ({
@@ -16,6 +17,7 @@ import { SingleCourseComponent } from './course/single-course/single-course.comp
         DetailCourseComponent,
         ListCourseComponent,
         SingleCourseComponent,
+        ListTrainingComponent,
       ],
     imports:
       [
